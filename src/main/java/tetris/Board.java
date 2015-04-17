@@ -119,4 +119,8 @@ public class Board {
     public void moveShapeLeft() {
         currentShape.moveLeft();
     }
+
+    public void moveShapeRight() {
+        currentShape.moveRight();
+    }
 }

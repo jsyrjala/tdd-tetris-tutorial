@@ -19,4 +19,6 @@ public interface Shape {
     boolean hasBlockAt(int row, int col);
 
     void moveLeft();
+
+    void moveRight();
 }

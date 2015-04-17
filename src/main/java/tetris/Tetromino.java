@@ -120,6 +120,10 @@ public class Tetromino extends Piece implements Shape {
 
     @Override
     public void moveLeft() {
-        col += -1;
+        col -= 1;
+    }
+    @Override
+    public void moveRight() {
+        col += 1;
     }
 }
