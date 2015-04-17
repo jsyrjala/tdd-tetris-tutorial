@@ -83,7 +83,12 @@ public class Board {
     }
 
     private boolean hitsBottom() {
-        return currentShape.getRow() >= this.rows -1;
+        for(int c = 0; c < columns ; c ++ ) {
+            if(currentShape.hasBlockAt(this.rows -1, c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private char getAt(int row, int col) {

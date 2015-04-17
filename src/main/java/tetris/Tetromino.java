@@ -116,6 +116,5 @@ public class Tetromino extends Piece implements Shape {
             return false;
         }
         return blocks.get(shapeRow).get(shapeCol) != Block.EMPTY;
-
     }
 }
