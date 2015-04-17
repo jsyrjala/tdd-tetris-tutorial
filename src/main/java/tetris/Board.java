@@ -33,8 +33,7 @@ public class Board {
         String s = "";
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-
-                if(currentBlock != null && row == currentBlock.row && col == currentBlock.col) {
+                if(isCurrentBlockAt(row, col)) {
                     s += currentBlock.type;
                 } else {
                     s += getAt(row, col);
@@ -43,6 +42,10 @@ public class Board {
             s += "\n";
         }
         return s;
+    }
+
+    private boolean isCurrentBlockAt(int row, int col) {
+        return currentBlock != null && row == currentBlock.row && col == currentBlock.col;
     }
 
     public boolean hasFalling() {
@@ -68,7 +71,15 @@ public class Board {
     }
 
     private boolean canDrop() {
-        return getAt(currentBlock.row, currentBlock.col) != Block.EMPTY || currentBlock.row < this.rows -1;
+        return !(hitsBottom() || hasBlockBelow());
+    }
+
+    private boolean hasBlockBelow() {
+        return getAt(currentBlock.row + 1, currentBlock.col) != Block.EMPTY ;
+    }
+
+    private boolean hitsBottom() {
+        return currentBlock.row >= this.rows -1;
     }
 
     private char getAt(int row, int col) {
