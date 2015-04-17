@@ -45,7 +45,7 @@ public class Board {
     }
 
     private boolean isCurrentBlockAt(int row, int col) {
-        return currentBlock != null && row == currentBlock.row && col == currentBlock.col;
+        return currentBlock != null && row == currentBlock.getRow() && col == currentBlock.getCol();
     }
 
     public boolean hasFalling() {
@@ -63,7 +63,7 @@ public class Board {
 
     public void tick() {
         if(canDrop()) {
-            currentBlock.row++;
+            currentBlock.goDown();
         } else {
             falling = false;
             showBlock(currentBlock);
@@ -75,11 +75,11 @@ public class Board {
     }
 
     private boolean hasBlockBelow() {
-        return getAt(currentBlock.row + 1, currentBlock.col) != Block.EMPTY ;
+        return getAt(currentBlock.getRow() + 1, currentBlock.getCol()) != Block.EMPTY ;
     }
 
     private boolean hitsBottom() {
-        return currentBlock.row >= this.rows -1;
+        return currentBlock.getRow() >= this.rows -1;
     }
 
     private char getAt(int row, int col) {
@@ -91,6 +91,6 @@ public class Board {
     }
 
     private void showBlock(Block block) {
-        setAt(block.row, block.col, block.type);
+        setAt(block.getRow(), block.getCol(), block.type);
     }
 }

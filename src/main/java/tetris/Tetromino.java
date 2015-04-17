@@ -50,6 +50,7 @@ public class Tetromino extends Piece implements Shape {
 
     private final List<Piece> blockDatas;
     private final int index;
+    private int row, col;
 
     public Tetromino(List<Piece> blockDatas, int index) {
         super(blockDatas.get(index).toString());
@@ -75,4 +76,17 @@ public class Tetromino extends Piece implements Shape {
         return x;
     }
 
+    @Override
+    public int getRow() {
+        return row;
+    }
+    @Override
+    public int getCol() {
+        return col;
+    }
+
+    @Override
+    public void goDown() {
+        this.row ++;
+    }
 }

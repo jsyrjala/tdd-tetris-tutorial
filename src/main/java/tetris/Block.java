@@ -10,11 +10,24 @@ package tetris;
 public class Block implements Shape {
     public static final char EMPTY = '.';
     public static final char BLOCK = 'X';
-    public int row, col;
+    private int row, col;
     public final char type;
     public Block(char type) {
         this.row = 0;
         this.col = 1;
         this.type = type;
+    }
+
+    @Override
+    public int getRow() {
+        return row;
+    }
+    @Override
+    public int getCol() {
+        return col;
+    }
+    @Override
+    public void goDown() {
+        this.row ++;
     }
 }
