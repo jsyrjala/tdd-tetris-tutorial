@@ -230,5 +230,27 @@ public class MovingAFallingPieceTest extends Assert {
                     "XXXXXXXX\n", board.toString());
         }
 
+        @Test
+        public void it_doesnt_go_over_shape_on_below() {
+            board.moveShapeDown();
+            board.moveShapeDown();
+            board.moveShapeDown();
+            assertEquals("" +
+                    "........\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "X...T..X\n" +
+                    "X..TTT.X\n" +
+                    "XXXXXXXX\n", board.toString());
+
+            board.moveShapeDown();
+            assertEquals("" +
+                    "........\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "X...T..X\n" +
+                    "X..TTT.X\n" +
+                    "XXXXXXXX\n", board.toString());
+        }
     }
 }
