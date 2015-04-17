@@ -15,6 +15,12 @@ public class Tetromino extends Piece {
             "TTT\n" +
             "...\n"
     );
+    public static final Tetromino I_SHAPE = new Tetromino("" +
+            ".....\n" +
+            ".....\n" +
+            "IIII.\n" +
+            ".....\n" +
+            ".....\n");
 
     public Tetromino(String blockData) {
         super(blockData);
