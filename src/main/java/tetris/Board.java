@@ -19,13 +19,13 @@ public class Board {
     public Board(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
-        board = new ArrayList<>(this.rows);
+        this.board = new ArrayList<>(this.rows);
         for(int r = 0 ; r < this.rows ; r++) {
             List<Character> colList = new ArrayList<>(this.columns);
             for(int c = 0; c < this.columns; c++) {
                 colList.add(Block.EMPTY);
             }
-            board.add(colList);
+            this.board.add(colList);
         }
     }
 
@@ -33,8 +33,6 @@ public class Board {
         String s = "";
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-
-
                 if(isCurrentShapeAt(row, col)) {
                     s += currentShape.getType();
                 } else {
