@@ -14,24 +14,11 @@ public class Piece {
     protected List<List<Character>> blocks;
 
     public Piece(String blockData) {
-        this.blocks = toBlocks(blockData);
+        this.blocks = Util.toBlocks(blockData);
     }
 
     public Piece(List<List<Character>> blocks) {
         this.blocks = blocks;
-    }
-
-    protected List<List<Character>> toBlocks(String data) {
-        String[] rows = data.trim().split("\n");
-        List<List<Character>> array = new ArrayList<>();
-        for(String row: rows) {
-            List<Character> rowArray = new ArrayList<>();
-            array.add(rowArray);
-            for (int col = 0; col < rows.length; col++) {
-                rowArray.add(row.charAt(col));
-            }
-        }
-        return array;
     }
 
     @Override

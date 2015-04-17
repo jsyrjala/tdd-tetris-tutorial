@@ -127,6 +127,7 @@ public class Tetromino extends Piece implements Shape {
         col += 1;
     }
 
+
     @Override
     public void moveDown() {
         row += 1;
