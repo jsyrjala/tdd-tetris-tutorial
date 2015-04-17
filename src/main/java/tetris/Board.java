@@ -70,15 +70,15 @@ public class Board {
             currentShape.goDown();
         } else {
             falling = false;
-            showBlock(currentShape);
+            addShapeToBoard(currentShape);
         }
     }
 
     private boolean canDrop() {
-        return !(hitsBottom() || hasBlockBelow());
+        return !(hitsBottom() || hasCollidesWithBlockInNextRow());
     }
 
-    private boolean hasBlockBelow() {
+    private boolean hasCollidesWithBlockInNextRow() {
         return getAt(currentShape.getRow() + 1, currentShape.getCol()) != Block.EMPTY ;
     }
 
@@ -99,7 +99,7 @@ public class Board {
         board.get(row).set(col, value);
     }
 
-    private void showBlock(Shape shape) {
+    private void addShapeToBoard(Shape shape) {
         for(int r = 0; r < rows ; r ++) {
             for (int c = 0; c < columns; c++) {
                 if (shape.hasBlockAt(r, c)) {
