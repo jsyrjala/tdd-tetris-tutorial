@@ -75,18 +75,24 @@ public class Board {
     }
 
     private boolean canDrop() {
-        return !(hitsBottom() || collidesWithBlocksInNextRow());
+        return !(hitsBottom() || collidesWithBlocksAtOffset(+1, 0));
     }
 
-    private boolean collidesWithBlocksInNextRow() {
+    private boolean collidesWithBlocksAtOffset(int rowOffset, int colOffset) {
         for(int r = 0; r < rows ; r ++) {
             for (int c = 0; c < columns; c++) {
-                if(currentShape.hasBlockAt(r, c) && getAt(r+1, c) != Block.EMPTY) {
+                if(currentShape.hasBlockAt(r, c) &&
+                        ( ((r + rowOffset) > rows -1 ) || (c + colOffset < 0) ||  (c + colOffset > columns -1) ||
+                                reservedAt(rowOffset, colOffset, r, c))) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    private boolean reservedAt(int rowOffset, int colOffset, int r, int c) {
+        return getAt(r + rowOffset, c + colOffset) != Block.EMPTY;
     }
 
     private boolean hitsBottom() {
@@ -132,18 +138,5 @@ public class Board {
         if(!collidesWithBlocksAtOffset(+1, 0)) {
             currentShape.moveDown();
         }
-    }
-
-    private boolean collidesWithBlocksAtOffset(int rowOffset, int colOffset) {
-        for(int r = 0; r < rows ; r ++) {
-            for (int c = 0; c < columns; c++) {
-                if(currentShape.hasBlockAt(r, c) &&
-                    ( ((r + rowOffset) > rows -1 ) || (c + colOffset < 0) ||  (c + colOffset > columns -1) ||
-                            getAt(r + rowOffset, c + colOffset) != Block.EMPTY)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

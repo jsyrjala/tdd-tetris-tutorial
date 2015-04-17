@@ -21,7 +21,7 @@ public class MovingAFallingPieceTest extends Assert {
     // TODO: a falling piece can be moved down OK
     // TODO: it will not move left over the board OK
     // TODO: it will not move right over the board OK
-    // TODO: it will not move down over the board (will stop falling)
+    // TODO: it will not move down over the board (will stop falling) OK
     // TODO: it cannot be moved left if another piece is in the way
     // TODO: it cannot be moved right if another piece is in the way
     // TODO: it cannot be moved down if another piece is in the way (will stop falling)
