@@ -4,6 +4,8 @@
 
 package tetris;
 
+import java.util.List;
+
 /**
  * Created by jsyrjala on 4/17/15.
  */
@@ -16,5 +18,22 @@ public class Tetromino extends Piece {
 
     public Tetromino(String blockData) {
         super(blockData);
+    }
+    public Tetromino(List<List<Character>> blockData) {
+        super(blockData);
+    }
+    @Override
+    public Tetromino rotateLeft() {
+        return (Tetromino) super.rotateLeft();
+    }
+
+    @Override
+    public Tetromino rotateRight() {
+        return (Tetromino) super.rotateRight();
+    }
+
+    @Override
+    protected Piece createPiece(List<List<Character>> newBlocks) {
+        return new Tetromino(newBlocks);
     }
 }

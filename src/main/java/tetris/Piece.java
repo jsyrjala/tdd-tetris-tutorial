@@ -25,7 +25,7 @@ public class Piece {
         }
     }
 
-    private Piece(List<List<Character>> blocks) {
+    public Piece(List<List<Character>> blocks) {
         this.blocks = blocks;
     }
 
@@ -52,13 +52,16 @@ public class Piece {
                 newBlocks.get(c).set(r, value);
             }
         }
-        return new Piece(newBlocks);
+        return createPiece(newBlocks);
     }
 
     public Piece rotateLeft() {
         return rotateRight().rotateRight().rotateRight();
     }
 
+    protected Piece createPiece(List<List<Character>> newBlocks) {
+        return new Piece(newBlocks);
+    }
     private List<List<Character>> createArray(int size) {
         List<List<Character>> array = new ArrayList<>();
         for(int r = 0; r < size; r ++) {
