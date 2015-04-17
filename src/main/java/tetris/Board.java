@@ -79,7 +79,14 @@ public class Board {
     }
 
     private boolean collidesWithBlocksInNextRow() {
-        return getAt(currentShape.getRow() + 1, currentShape.getCol()) != Block.EMPTY ;
+        for(int r = 0; r < rows ; r ++) {
+            for (int c = 0; c < columns; c++) {
+                if(currentShape.hasBlockAt(r, c) && getAt(r+1, c) != Block.EMPTY) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean hitsBottom() {
