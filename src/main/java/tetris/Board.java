@@ -100,6 +100,12 @@ public class Board {
     }
 
     private void showBlock(Shape shape) {
-        setAt(shape.getRow(), shape.getCol(), shape.getType());
+        for(int r = 0; r < rows ; r ++) {
+            for (int c = 0; c < columns; c++) {
+                if (shape.hasBlockAt(r, c)) {
+                    setAt(r, c, shape.getType());
+                }
+            }
+        }
     }
 }
