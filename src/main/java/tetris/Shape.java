@@ -21,4 +21,6 @@ public interface Shape {
     void moveLeft();
 
     void moveRight();
+
+    void moveDown();
 }

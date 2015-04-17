@@ -123,4 +123,8 @@ public class Board {
     public void moveShapeRight() {
         currentShape.moveRight();
     }
+
+    public void moveShapeDown() {
+        currentShape.moveDown();
+    }
 }

@@ -16,8 +16,8 @@ public class MovingAFallingPieceTest extends Assert {
     // - The test names have been provided, you just need to fill in the test body
     // - Next step: RotatingAFallingPieceTest
 
-    // TODO: a falling piece can be moved left
-    // TODO: a falling piece can be moved right
+    // TODO: a falling piece can be moved left OK
+    // TODO: a falling piece can be moved right OK
     // TODO: a falling piece can be moved down
     // TODO: it will not move left over the board
     // TODO: it will not move right over the board
@@ -61,6 +61,18 @@ public class MovingAFallingPieceTest extends Assert {
                     ".....T..\n" +
                     "....TTT.\n" +
                     "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+        }
+
+        @Test
+        public void it_can_be_moved_down() {
+            board.moveShapeDown();
+            assertEquals("" +
+                    "........\n" +
+                    "....T...\n" +
+                    "...TTT..\n" +
                     "........\n" +
                     "........\n" +
                     "........\n", board.toString());
