@@ -46,7 +46,7 @@ public class Tetromino extends Piece {
     );
     public static final Tetromino T_SHAPE = new Tetromino(T_ROTATIONS, 0);
     public static final Tetromino I_SHAPE = new Tetromino(I_ROTATIONS, 0);
-    public static final Tetromino O_SHAPE =  new Tetromino(O_ROTATIONS, 0);;
+    public static final Tetromino O_SHAPE = new Tetromino(O_ROTATIONS, 0);;
 
     private final List<Piece> blockDatas;
     private final int index;
