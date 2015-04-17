@@ -44,34 +44,36 @@ public class Tetromino extends Piece implements Shape {
     private static final List<Piece> O_ROTATIONS = Arrays.asList(
             O_SHAPE_PIECE
     );
-    public static final Tetromino T_SHAPE = new Tetromino(T_ROTATIONS, 0);
-    public static final Tetromino I_SHAPE = new Tetromino(I_ROTATIONS, 0);
-    public static final Tetromino O_SHAPE = new Tetromino(O_ROTATIONS, 0);;
+    public static final Tetromino T_SHAPE = new Tetromino(T_ROTATIONS, 'T', 0);
+    public static final Tetromino I_SHAPE = new Tetromino(I_ROTATIONS, 'I', 0);
+    public static final Tetromino O_SHAPE = new Tetromino(O_ROTATIONS, 'O', 0);;
 
-    private final List<Piece> blockDatas;
+    private final List<Piece> rotations;
     private final int index;
     private int row, col;
+    private final char type;
 
-    public Tetromino(List<Piece> blockDatas, int index) {
-        super(blockDatas.get(index).toString());
-        this.blockDatas = blockDatas;
+    public Tetromino(List<Piece> rotations, char type, int index) {
+        super(rotations.get(index).toString());
+        this.rotations = rotations;
+        this.type = type;
         this.index = index;
     }
 
     @Override
     public Tetromino rotateLeft() {
-        return new Tetromino(blockDatas, normalizeIndex(this.index - 1));
+        return new Tetromino(rotations, type, normalizeIndex(this.index - 1));
     }
 
     @Override
     public Tetromino rotateRight() {
-        return new Tetromino(blockDatas, normalizeIndex(this.index + 1));
+        return new Tetromino(rotations, type, normalizeIndex(this.index + 1));
     }
 
     private int normalizeIndex(int i) {
-        int x = i % blockDatas.size();
+        int x = i % rotations.size();
         if(x < 0 ) {
-            return blockDatas.size() - 2 - x;
+            return rotations.size() - 2 - x;
         }
         return x;
     }
@@ -92,6 +94,26 @@ public class Tetromino extends Piece implements Shape {
 
     @Override
     public char getType() {
-        return 'Z';
+        return type;
+    }
+
+    @Override
+    public void init(int startingCol) {
+        this.col = startingCol;
+    }
+    @Override
+    public boolean hasBlockAt(int row, int col) {
+        int shapeRow = row - this.row;
+        int shapeCol = col - this.col +1; // TODO miksi +1?
+
+        if( shapeRow < 0 || shapeCol < 0) {
+            return false;
+        }
+
+        if( shapeRow > blocks.size() - 1 || shapeCol > blocks.get(0).size() - 1) {
+            return false;
+        }
+        return blocks.get(shapeRow).get(shapeCol) != Block.EMPTY;
+
     }
 }

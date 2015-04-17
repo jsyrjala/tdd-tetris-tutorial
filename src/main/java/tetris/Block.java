@@ -34,4 +34,14 @@ public class Block implements Shape {
     public char getType() {
         return type;
     }
+
+    @Override
+    public void init(int startingCol) {
+        this.col = startingCol;
+    }
+
+    @Override
+    public boolean hasBlockAt(int row, int col) {
+        return this.row == row && this.col == col;
+    }
 }

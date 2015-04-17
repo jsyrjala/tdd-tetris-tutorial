@@ -13,4 +13,8 @@ public interface Shape {
     int getCol();
     void goDown();
     char getType();
+
+    void init(int startingCol);
+
+    boolean hasBlockAt(int row, int col);
 }

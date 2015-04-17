@@ -33,7 +33,9 @@ public class Board {
         String s = "";
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                if(isCurrentBlockAt(row, col)) {
+
+
+                if(isCurrentShapeAt(row, col)) {
                     s += currentShape.getType();
                 } else {
                     s += getAt(row, col);
@@ -44,8 +46,9 @@ public class Board {
         return s;
     }
 
-    private boolean isCurrentBlockAt(int row, int col) {
-        return currentShape != null && row == currentShape.getRow() && col == currentShape.getCol();
+    private boolean isCurrentShapeAt(int row, int col) {
+        return currentShape != null &&
+                currentShape.hasBlockAt(row, col);
     }
 
     public boolean hasFalling() {
@@ -59,6 +62,7 @@ public class Board {
         }
         falling = true;
         currentShape = newShape;
+        currentShape.init(this.columns / 2);
     }
 
     public void tick() {

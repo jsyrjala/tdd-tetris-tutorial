@@ -11,7 +11,7 @@ import java.util.List;
  * Created by jsyrjala on 4/17/15.
  */
 public class Piece {
-    private List<List<Character>> blocks;
+    protected List<List<Character>> blocks;
 
     public Piece(String blockData) {
         this.blocks = toBlocks(blockData);
