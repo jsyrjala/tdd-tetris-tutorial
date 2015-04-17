@@ -100,7 +100,9 @@ public class Tetromino extends Piece implements Shape {
     @Override
     public void init(int startingCol) {
         this.col = startingCol;
+        this.row = 0;
     }
+
     @Override
     public boolean hasBlockAt(int row, int col) {
         int shapeRow = row - this.row;
