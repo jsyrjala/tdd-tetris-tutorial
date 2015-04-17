@@ -11,8 +11,10 @@ public class Block {
     public static final char EMPTY = '.';
     public static final char BLOCK = 'X';
     public int row, col;
-    public Block(char x) {
+    public final char type;
+    public Block(char type) {
         this.row = 0;
         this.col = 1;
+        this.type = type;
     }
 }

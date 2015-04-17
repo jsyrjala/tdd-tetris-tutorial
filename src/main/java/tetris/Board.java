@@ -35,9 +35,9 @@ public class Board {
             for (int col = 0; col < columns; col++) {
 
                 if(currentBlock != null && row == currentBlock.row && col == currentBlock.col) {
-                    s += 'X';
+                    s += currentBlock.type;
                 } else {
-                    s += board.get(row).get(col);
+                    s += getAt(row, col);
                 }
             }
             s += "\n";
@@ -49,6 +49,7 @@ public class Board {
         return falling;
     }
 
+
     public void drop(Block newBlock) {
         if(falling) {
             throw new IllegalStateException("already falling");
@@ -58,10 +59,27 @@ public class Board {
     }
 
     public void tick() {
-        if(currentBlock.row < this.rows -1) {
+        if(canDrop()) {
             currentBlock.row++;
         } else {
             falling = false;
+            showBlock(currentBlock);
         }
+    }
+
+    private boolean canDrop() {
+        return getAt(currentBlock.row, currentBlock.col) != Block.EMPTY || currentBlock.row < this.rows -1;
+    }
+
+    private char getAt(int row, int col) {
+        return board.get(row).get(col);
+    }
+
+    private void setAt(int row, int col, char value) {
+        board.get(row).set(col, value);
+    }
+
+    private void showBlock(Block block) {
+        setAt(block.row, block.col, block.type);
     }
 }
