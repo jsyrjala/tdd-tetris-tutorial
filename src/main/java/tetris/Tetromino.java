@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by jsyrjala on 4/17/15.
  */
-public class Tetromino extends Piece {
+public class Tetromino extends Piece implements Shape {
 
     private static final Piece T_SHAPE_PIECE = new Piece("" +
             ".T.\n" +

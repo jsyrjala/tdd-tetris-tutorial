@@ -7,14 +7,6 @@ package tetris;
 /**
  * Created by jsyrjala on 4/17/15.
  */
-public class Block implements Shape {
-    public static final char EMPTY = '.';
-    public static final char BLOCK = 'X';
-    public int row, col;
-    public final char type;
-    public Block(char type) {
-        this.row = 0;
-        this.col = 1;
-        this.type = type;
-    }
+public interface Shape {
+
 }
