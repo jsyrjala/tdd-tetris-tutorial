@@ -138,5 +138,30 @@ public class MovingAFallingPieceTest extends Assert {
                     "........\n" +
                     "........\n", board.toString());
         }
+
+        @Test
+        public void it_doesnt_go_over_bottom_border() {
+            board.moveShapeDown();
+            board.moveShapeDown();
+            board.moveShapeDown();
+            board.moveShapeDown();
+
+            assertEquals("" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "....T...\n" +
+                    "...TTT..\n", board.toString());
+
+            board.moveShapeDown();
+            assertEquals("" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "....T...\n" +
+                    "...TTT..\n", board.toString());
+        }
     }
 }

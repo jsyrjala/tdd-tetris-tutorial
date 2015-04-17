@@ -117,26 +117,29 @@ public class Board {
     }
 
     public void moveShapeLeft() {
-        if(!collidesWithBlocksAtOffset(-1)) {
+        if(!collidesWithBlocksAtOffset(0, -1)) {
             currentShape.moveLeft();
         }
     }
 
     public void moveShapeRight() {
-        if(!collidesWithBlocksAtOffset(+1)) {
+        if(!collidesWithBlocksAtOffset(0, +1)) {
             currentShape.moveRight();
         }
     }
 
     public void moveShapeDown() {
-        currentShape.moveDown();
+        if(!collidesWithBlocksAtOffset(+1, 0)) {
+            currentShape.moveDown();
+        }
     }
 
-    private boolean collidesWithBlocksAtOffset(int colOffset) {
+    private boolean collidesWithBlocksAtOffset(int rowOffset, int colOffset) {
         for(int r = 0; r < rows ; r ++) {
             for (int c = 0; c < columns; c++) {
                 if(currentShape.hasBlockAt(r, c) &&
-                    ((c + colOffset < 0) ||  (c + colOffset > columns -1) || getAt(r, c + colOffset) != Block.EMPTY)) {
+                    ( ((r + rowOffset) > rows -1 ) || (c + colOffset < 0) ||  (c + colOffset > columns -1) ||
+                            getAt(r + rowOffset, c + colOffset) != Block.EMPTY)) {
                     return true;
                 }
             }
