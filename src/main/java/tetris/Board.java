@@ -75,10 +75,10 @@ public class Board {
     }
 
     private boolean canDrop() {
-        return !(hitsBottom() || hasCollidesWithBlockInNextRow());
+        return !(hitsBottom() || collidesWithBlocksInNextRow());
     }
 
-    private boolean hasCollidesWithBlockInNextRow() {
+    private boolean collidesWithBlocksInNextRow() {
         return getAt(currentShape.getRow() + 1, currentShape.getCol()) != Block.EMPTY ;
     }
 
