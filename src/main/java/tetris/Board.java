@@ -123,7 +123,9 @@ public class Board {
     }
 
     public void moveShapeRight() {
-        currentShape.moveRight();
+        if(!collidesWithBlocksAtOffset(+1)) {
+            currentShape.moveRight();
+        }
     }
 
     public void moveShapeDown() {
@@ -134,7 +136,7 @@ public class Board {
         for(int r = 0; r < rows ; r ++) {
             for (int c = 0; c < columns; c++) {
                 if(currentShape.hasBlockAt(r, c) &&
-                    ((c + colOffset < 0) ||  getAt(r, c + colOffset) != Block.EMPTY)) {
+                    ((c + colOffset < 0) ||  (c + colOffset > columns -1) || getAt(r, c + colOffset) != Block.EMPTY)) {
                     return true;
                 }
             }

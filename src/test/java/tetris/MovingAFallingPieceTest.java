@@ -19,8 +19,8 @@ public class MovingAFallingPieceTest extends Assert {
     // TODO: a falling piece can be moved left OK
     // TODO: a falling piece can be moved right OK
     // TODO: a falling piece can be moved down OK
-    // TODO: it will not move left over the board
-    // TODO: it will not move right over the board
+    // TODO: it will not move left over the board OK
+    // TODO: it will not move right over the board OK
     // TODO: it will not move down over the board (will stop falling)
     // TODO: it cannot be moved left if another piece is in the way
     // TODO: it cannot be moved right if another piece is in the way
@@ -96,7 +96,6 @@ public class MovingAFallingPieceTest extends Assert {
         @Test
         public void it_doesnt_go_over_left_border() {
             board.moveShapeLeft();
-
             board.moveShapeLeft();
             board.moveShapeLeft();
             assertEquals("" +
@@ -111,6 +110,29 @@ public class MovingAFallingPieceTest extends Assert {
             assertEquals("" +
                     ".T......\n" +
                     "TTT.....\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+        }
+
+        @Test
+        public void it_doesnt_go_over_right_border() {
+            board.moveShapeRight();
+            board.moveShapeRight();
+            board.moveShapeRight();
+            assertEquals("" +
+                    "......T.\n" +
+                    ".....TTT\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+
+            board.moveShapeRight();
+            assertEquals("" +
+                    "......T.\n" +
+                    ".....TTT\n" +
                     "........\n" +
                     "........\n" +
                     "........\n" +
