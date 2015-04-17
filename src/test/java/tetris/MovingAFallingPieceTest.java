@@ -164,4 +164,71 @@ public class MovingAFallingPieceTest extends Assert {
                     "...TTT..\n", board.toString());
         }
     }
+
+    public class When_shape_hits_another_shape {
+        private final Board board = new Board("" +
+                "........\n" +
+                "X......X\n" +
+                "X......X\n" +
+                "X......X\n" +
+                "X......X\n" +
+                "XXXXXXXX\n");
+
+        @Before
+        public void dropPiece() {
+            board.drop(Tetromino.T_SHAPE);
+            assertEquals("" +
+                    "....T...\n" +
+                    "X..TTT.X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "XXXXXXXX\n", board.toString());
+        }
+
+        @Test
+        public void it_doesnt_go_over_shape_on_left() {
+            board.moveShapeLeft();
+            board.moveShapeLeft();
+            assertEquals("" +
+                    "..T.....\n" +
+                    "XTTT...X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "XXXXXXXX\n", board.toString());
+
+            board.moveShapeLeft();
+            assertEquals("" +
+                    "..T.....\n" +
+                    "XTTT...X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "XXXXXXXX\n", board.toString());
+        }
+
+        @Test
+        public void it_doesnt_go_over_shape_on_right() {
+            board.moveShapeRight();
+            board.moveShapeRight();
+            assertEquals("" +
+                    ".....T..\n" +
+                    "X...TTTX\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "XXXXXXXX\n", board.toString());
+
+            board.moveShapeRight();
+            assertEquals("" +
+                    ".....T..\n" +
+                    "X...TTTX\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "X......X\n" +
+                    "XXXXXXXX\n", board.toString());
+        }
+
+    }
 }

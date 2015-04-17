@@ -29,6 +29,12 @@ public class Board {
         }
     }
 
+    public Board(String boardData) {
+        this.board = Util.toBlocks(boardData);
+        this.rows = board.size();
+        this.columns = board.get(0).size();
+    }
+
     public String toString() {
         String s = "";
         for (int row = 0; row < rows; row++) {
