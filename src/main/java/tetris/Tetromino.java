@@ -9,8 +9,8 @@ package tetris;
  */
 public class Tetromino extends Piece {
     public static final Tetromino T_SHAPE = new Tetromino("" +
-            "...\n" +
-            "...\n" +
+            ".T.\n" +
+            "TTT\n" +
             "...\n"
     );
 
