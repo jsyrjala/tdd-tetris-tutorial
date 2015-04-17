@@ -15,7 +15,7 @@ public class Tetromino extends Piece {
             "TTT\n" +
             "...\n"
     );
-    public static final Tetromino I_SHAPE = new Tetromino("" +
+    public static final Tetromino I_SHAPE = new IShape("" +
             ".....\n" +
             ".....\n" +
             "IIII.\n" +
@@ -41,5 +41,36 @@ public class Tetromino extends Piece {
     @Override
     protected Piece createPiece(List<List<Character>> newBlocks) {
         return new Tetromino(newBlocks);
+    }
+
+    private static class IShape extends Tetromino {
+        private int angle = 0;
+        public IShape(String blockData) {
+            super(blockData);
+        }
+
+        public IShape(List<List<Character>> blockData) {
+            super(blockData);
+        }
+
+        @Override
+        public Tetromino rotateLeft() {
+            angle += 1;
+            if(angle % 2 == 1) {
+                return super.rotateLeft();
+            } else {
+                return super.rotateRight();
+            }
+        }
+
+        @Override
+        public Tetromino rotateRight() {
+            angle -= 1;
+            if(angle % 2 == 1) {
+                return super.rotateLeft();
+            } else {
+                return super.rotateRight();
+            }
+        }
     }
 }
