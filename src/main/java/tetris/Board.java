@@ -12,7 +12,6 @@ public class Board {
     private final int rows;
     private final int columns;
     private boolean falling;
-    private int frame = 0;
 
     private List<List<Character>> board;
     private Block currentBlock;
@@ -34,7 +33,8 @@ public class Board {
         String s = "";
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                if(row == frame && col == 1 && falling) {
+
+                if(currentBlock != null && row == currentBlock.row && col == currentBlock.col) {
                     s += 'X';
                 } else {
                     s += board.get(row).get(col);
@@ -58,6 +58,6 @@ public class Board {
     }
 
     public void tick() {
-        frame ++;
+        currentBlock.row ++;
     }
 }
