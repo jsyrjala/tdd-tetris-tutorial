@@ -58,6 +58,10 @@ public class Board {
     }
 
     public void tick() {
-        currentBlock.row ++;
+        if(currentBlock.row < this.rows -1) {
+            currentBlock.row++;
+        } else {
+            falling = false;
+        }
     }
 }

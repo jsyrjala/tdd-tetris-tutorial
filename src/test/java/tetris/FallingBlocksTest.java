@@ -100,7 +100,7 @@ public class FallingBlocksTest extends Assert {
                     ".X.\n", board.toString());
             assertTrue("the player should still be able to move the block", board.hasFalling());
         }
-/*
+
         @Test
         public void it_stops_when_it_hits_the_bottom() {
             board.tick();
@@ -110,7 +110,7 @@ public class FallingBlocksTest extends Assert {
                     ".X.\n", board.toString());
             assertFalse("the block should stop moving", board.hasFalling());
         }
-*/
+
     }
 
 /*
