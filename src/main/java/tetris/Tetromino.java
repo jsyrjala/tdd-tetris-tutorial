@@ -4,73 +4,66 @@
 
 package tetris;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by jsyrjala on 4/17/15.
  */
 public class Tetromino extends Piece {
-    public static final Tetromino T_SHAPE = new Tetromino("" +
+
+    private static final Piece T_SHAPE_PIECE = new Piece("" +
             ".T.\n" +
             "TTT\n" +
-            "...\n"
-    );
-    public static final Tetromino I_SHAPE = new IShape("" +
+            "...\n");
+
+    private static final Piece I_SHAPE_PIECE = new Piece("" +
             ".....\n" +
             ".....\n" +
             "IIII.\n" +
             ".....\n" +
             ".....\n");
 
-    public Tetromino(String blockData) {
-        super(blockData);
+    private static final List<Piece> T_ROTATIONS = Arrays.asList(
+            T_SHAPE_PIECE,
+            T_SHAPE_PIECE.rotateRight(),
+            T_SHAPE_PIECE.rotateRight().rotateRight(),
+            T_SHAPE_PIECE.rotateRight().rotateRight().rotateRight()
+    );
+
+    private static final List<Piece> I_ROTATIONS = Arrays.asList(
+            I_SHAPE_PIECE,
+            I_SHAPE_PIECE.rotateRight()
+    );
+
+    public static final Tetromino T_SHAPE = new Tetromino(T_ROTATIONS, 0);
+    public static final Tetromino I_SHAPE = new Tetromino(I_ROTATIONS, 0);
+
+    private final List<Piece> blockDatas;
+    private final int index;
+
+    public Tetromino(List<Piece> blockDatas, int index) {
+        super(blockDatas.get(index).toString());
+        this.blockDatas = blockDatas;
+        this.index = index;
     }
-    public Tetromino(List<List<Character>> blockData) {
-        super(blockData);
-    }
+
     @Override
     public Tetromino rotateLeft() {
-        return (Tetromino) super.rotateLeft();
+        return new Tetromino(blockDatas, normalizeIndex(this.index - 1));
     }
 
     @Override
     public Tetromino rotateRight() {
-        return (Tetromino) super.rotateRight();
+        return new Tetromino(blockDatas, normalizeIndex(this.index + 1));
     }
 
-    @Override
-    protected Piece createPiece(List<List<Character>> newBlocks) {
-        return new Tetromino(newBlocks);
+    private int normalizeIndex(int i) {
+        int x = i % blockDatas.size();
+        if(x < 0 ) {
+            return blockDatas.size() - 2 - x;
+        }
+        return x;
     }
 
-    private static class IShape extends Tetromino {
-        private int angle = 0;
-        public IShape(String blockData) {
-            super(blockData);
-        }
-
-        public IShape(List<List<Character>> blockData) {
-            super(blockData);
-        }
-
-        @Override
-        public Tetromino rotateLeft() {
-            angle += 1;
-            if(angle % 2 == 1) {
-                return super.rotateLeft();
-            } else {
-                return super.rotateRight();
-            }
-        }
-
-        @Override
-        public Tetromino rotateRight() {
-            angle -= 1;
-            if(angle % 2 == 1) {
-                return super.rotateLeft();
-            } else {
-                return super.rotateRight();
-            }
-        }
-    }
 }
