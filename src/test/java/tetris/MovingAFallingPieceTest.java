@@ -18,7 +18,7 @@ public class MovingAFallingPieceTest extends Assert {
 
     // TODO: a falling piece can be moved left OK
     // TODO: a falling piece can be moved right OK
-    // TODO: a falling piece can be moved down
+    // TODO: a falling piece can be moved down OK
     // TODO: it will not move left over the board
     // TODO: it will not move right over the board
     // TODO: it will not move down over the board (will stop falling)
@@ -73,6 +73,45 @@ public class MovingAFallingPieceTest extends Assert {
                     "........\n" +
                     "....T...\n" +
                     "...TTT..\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+        }
+    }
+
+    public class When_shape_hits_border {
+        private final Board board = new Board(6, 8);
+        @Before
+        public void dropPiece() {
+            board.drop(Tetromino.T_SHAPE);
+            assertEquals("" +
+                    "....T...\n" +
+                    "...TTT..\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+        }
+
+        @Test
+        public void it_doesnt_go_over_left_border() {
+            board.moveShapeLeft();
+
+            board.moveShapeLeft();
+            board.moveShapeLeft();
+            assertEquals("" +
+                    ".T......\n" +
+                    "TTT.....\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+
+            board.moveShapeLeft();
+            assertEquals("" +
+                    ".T......\n" +
+                    "TTT.....\n" +
+                    "........\n" +
                     "........\n" +
                     "........\n" +
                     "........\n", board.toString());
