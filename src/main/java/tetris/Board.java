@@ -115,4 +115,8 @@ public class Board {
             }
         }
     }
+
+    public void moveShapeLeft() {
+        currentShape.moveLeft();
+    }
 }

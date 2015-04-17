@@ -17,4 +17,6 @@ public interface Shape {
     void init(int startingCol);
 
     boolean hasBlockAt(int row, int col);
+
+    void moveLeft();
 }

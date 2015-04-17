@@ -44,4 +44,9 @@ public class Block implements Shape {
     public boolean hasBlockAt(int row, int col) {
         return this.row == row && this.col == col;
     }
+
+    @Override
+    public void moveLeft() {
+        col += -1;
+    }
 }

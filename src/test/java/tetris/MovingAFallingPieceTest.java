@@ -8,7 +8,6 @@ import net.orfjackal.nestedjunit.NestedJUnit;
 import org.junit.*;
 import org.junit.runner.RunWith;
 
-@Ignore("contains no test")
 @RunWith(NestedJUnit.class)
 public class MovingAFallingPieceTest extends Assert {
 
@@ -29,4 +28,30 @@ public class MovingAFallingPieceTest extends Assert {
 
     // P.S. Take into consideration, that part of the piece's area may be empty cells.
     // Only non-empty cells should take part in the collision checks.
+
+    public class When_a_piece_is_falling {
+        private final Board board = new Board(6, 8);
+        @Before
+        public void dropPiece() {
+            board.drop(Tetromino.T_SHAPE);
+            assertEquals("" +
+                    "....T...\n" +
+                    "...TTT..\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+        }
+        @Test
+        public void it_can_be_moved_left() {
+            board.moveShapeLeft();
+            assertEquals("" +
+                    "...T....\n" +
+                    "..TTT...\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n" +
+                    "........\n", board.toString());
+        }
+    }
 }

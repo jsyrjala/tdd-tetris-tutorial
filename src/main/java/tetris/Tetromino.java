@@ -117,4 +117,9 @@ public class Tetromino extends Piece implements Shape {
         }
         return blocks.get(shapeRow).get(shapeCol) != Block.EMPTY;
     }
+
+    @Override
+    public void moveLeft() {
+        col += -1;
+    }
 }
