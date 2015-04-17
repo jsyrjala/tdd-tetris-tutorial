@@ -14,7 +14,7 @@ public class Board {
     private boolean falling;
 
     private List<List<Character>> board;
-    private Block currentBlock;
+    private Shape currentShape;
 
     public Board(int rows, int columns) {
         this.rows = rows;
@@ -34,7 +34,7 @@ public class Board {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 if(isCurrentBlockAt(row, col)) {
-                    s += currentBlock.type;
+                    s += currentShape.getType();
                 } else {
                     s += getAt(row, col);
                 }
@@ -45,7 +45,7 @@ public class Board {
     }
 
     private boolean isCurrentBlockAt(int row, int col) {
-        return currentBlock != null && row == currentBlock.getRow() && col == currentBlock.getCol();
+        return currentShape != null && row == currentShape.getRow() && col == currentShape.getCol();
     }
 
     public boolean hasFalling() {
@@ -53,20 +53,20 @@ public class Board {
     }
 
 
-    public void drop(Block newBlock) {
+    public void drop(Shape newShape) {
         if(falling) {
             throw new IllegalStateException("already falling");
         }
         falling = true;
-        currentBlock = newBlock;
+        currentShape = newShape;
     }
 
     public void tick() {
         if(canDrop()) {
-            currentBlock.goDown();
+            currentShape.goDown();
         } else {
             falling = false;
-            showBlock(currentBlock);
+            showBlock(currentShape);
         }
     }
 
@@ -75,11 +75,11 @@ public class Board {
     }
 
     private boolean hasBlockBelow() {
-        return getAt(currentBlock.getRow() + 1, currentBlock.getCol()) != Block.EMPTY ;
+        return getAt(currentShape.getRow() + 1, currentShape.getCol()) != Block.EMPTY ;
     }
 
     private boolean hitsBottom() {
-        return currentBlock.getRow() >= this.rows -1;
+        return currentShape.getRow() >= this.rows -1;
     }
 
     private char getAt(int row, int col) {
@@ -90,7 +90,7 @@ public class Board {
         board.get(row).set(col, value);
     }
 
-    private void showBlock(Block block) {
-        setAt(block.getRow(), block.getCol(), block.type);
+    private void showBlock(Shape shape) {
+        setAt(shape.getRow(), shape.getCol(), shape.getType());
     }
 }

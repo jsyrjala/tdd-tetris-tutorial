@@ -12,4 +12,5 @@ public interface Shape {
     int getRow();
     int getCol();
     void goDown();
+    char getType();
 }

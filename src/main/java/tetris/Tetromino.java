@@ -89,4 +89,9 @@ public class Tetromino extends Piece implements Shape {
     public void goDown() {
         this.row ++;
     }
+
+    @Override
+    public char getType() {
+        return 'Z';
+    }
 }

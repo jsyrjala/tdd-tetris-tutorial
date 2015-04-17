@@ -11,7 +11,7 @@ public class Block implements Shape {
     public static final char EMPTY = '.';
     public static final char BLOCK = 'X';
     private int row, col;
-    public final char type;
+    private final char type;
     public Block(char type) {
         this.row = 0;
         this.col = 1;
@@ -29,5 +29,9 @@ public class Block implements Shape {
     @Override
     public void goDown() {
         this.row ++;
+    }
+    @Override
+    public char getType() {
+        return type;
     }
 }
